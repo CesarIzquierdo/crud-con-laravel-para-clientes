@@ -2,12 +2,17 @@
 
 @section('content')
 
-<div class="row">
+<div class="container">
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <br><br>
         <h3>LISTA DE CLIENTES</h3>
         <br>
+        <form class="form-inline my-2 my-lg-0 float-right">
+            <input name ="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" value="{{$buscarpor}}">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
                 Nuevo
