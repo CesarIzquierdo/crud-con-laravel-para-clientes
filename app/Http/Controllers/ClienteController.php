@@ -13,9 +13,28 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
+        //filtro 
         $buscarpor = $request->get('buscarpor');
-        $clientes=Cliente::where('nombre','LIKE','%'.$buscarpor.'%')->get(  );
-        return view('cliente.index', compact('clientes', 'buscarpor'));        
+        $filtroTelefono = $request->get('filtroTelefono');
+
+        $query = Cliente::query();
+
+         // Aplicar filtro por nombre
+        if ($buscarpor) {
+            $query->where('nombre', 'LIKE', '%' . $buscarpor . '%');
+        }
+
+        // Aplicar filtro por teléfono
+        if ($filtroTelefono) {
+            $query->where('telefono', 'LIKE', '%' . $filtroTelefono . '%');
+        }
+
+        // Obtener los resultados de la consulta
+        $clientes = $query->get();
+        return view('cliente.index', compact('clientes', 'buscarpor', 'filtroTelefono'));
+
+   
+        //return view('cliente.index', compact('clientes', 'buscarpor'));        
     }
 
     /**

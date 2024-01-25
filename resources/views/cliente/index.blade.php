@@ -1,23 +1,40 @@
 @extends('home')
+{{--@extends('layouts.app') --}}
 
 @section('content')
 
 <div class="container">
     <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-8" >
         <br><br>
-        <h3>LISTA DE CLIENTES</h3>
-        <br>
-        <form class="form-inline my-2 my-lg-0 float-right">
-            <input name ="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" value="{{$buscarpor}}">
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
-        </form>
+        <div style="background-color:#234;  padding: 10px; color: white;">
+            <h3 >LISTA DE CLIENTES</h3>
+        </div>
         
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
-                Nuevo
-        </button>
         <br>
+        <div
+            class="card text-white">
+            <div class="card-body">
+                <form class="form-inline my-2 my-lg-0 float-right">
+                    <input type="text" name="buscarpor" placeholder="Buscar por nombre" value="{{ $buscarpor }}">
+                    <input type="text" name="filtroTelefono" placeholder="Filtrar por teléfono" value="{{ $filtroTelefono }}">
+
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+            
+                 <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
+                    <strong>Nuevo cliente</strong>
+                </button>
+           
+        
+       
+        <br>
+        <div
+        class="card text-white">
+        <div class="card-body">
         <div
             class="table-responsive">
             <table class="table">
@@ -62,6 +79,8 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
         @include('cliente.create')
     </div>
 

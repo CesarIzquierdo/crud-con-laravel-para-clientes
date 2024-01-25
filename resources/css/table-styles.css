@@ -1,0 +1,19 @@
+/* public/css/table-styles.css */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.table img {
+    max-width: 100px;
+    max-height: 100px;
+    border: 1px solid #ddd;
+}
