@@ -27,6 +27,7 @@
                         <th scope="col">NOMBRE</th>
                         <th scope="col">TELEFONO</th>
                         <th scope="col">CORREO</th>
+                        <th scope="col">IMAGEN</th>
                         <th scope="col">ACCIONES</th>
                     </tr>
                 </thead>

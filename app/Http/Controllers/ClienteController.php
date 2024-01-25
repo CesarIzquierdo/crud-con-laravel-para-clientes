@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ClienteController extends Controller
 {
@@ -13,7 +14,7 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
         $buscarpor = $request->get('buscarpor');
-        $clientes=Cliente::where('nombre','LIKE','%'.$buscarpor.'%')->get();
+        $clientes=Cliente::where('nombre','LIKE','%'.$buscarpor.'%')->get(  );
         return view('cliente.index', compact('clientes', 'buscarpor'));        
     }
 
@@ -34,8 +35,15 @@ class ClienteController extends Controller
         $clientes-> nombre = $request->input('nombre');
         $clientes-> telefono= $request->input('telefono');
         $clientes-> correo = $request->input('correo');
+        $request-> validate(['file'=>'required|image']);
+        $imagePath = $request->file('file')->store('public/images');
+        $clientes->imagen = basename($imagePath);
         $clientes->save();
+
+        ##File::create({'url'-> $imagePath});
+
         return redirect() ->back();
+
     }
 
     /**

@@ -10,7 +10,7 @@ class Cliente extends Model
     use HasFactory;
     protected $table='clientes';
     protected $primarykey = 'id';
-    protected $fillabel = ['nombre', 'telefono', 'correo'];
+    protected $fillabel = ['nombre', 'telefono', 'correo', 'imagen'];
     protected $guarded=[];
     public $timestamps = false;
 }
