@@ -39,6 +39,13 @@
                             <td>{{$cliente->telefono}}</td>
                             <td>{{$cliente->correo}}</td>
                             <td>
+                                @if ($cliente->imagen)
+                                    <img src="{{ $cliente->imagen }}"  style="max-width: 100px; max-height: 100px;">
+                                @else
+                                    Sin imagen
+                                @endif
+                            </td>
+                            <td>
                                  <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit{{$cliente->id}}">
                                     Editar

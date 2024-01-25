@@ -35,16 +35,20 @@ class ClienteController extends Controller
         $clientes-> nombre = $request->input('nombre');
         $clientes-> telefono= $request->input('telefono');
         $clientes-> correo = $request->input('correo');
+        
         $request-> validate(['file'=>'required|image']);
+                
+         // Almacenar la imagen en la carpeta 'public/images'
         $imagePath = $request->file('file')->store('public/images');
-        $clientes->imagen = basename($imagePath);
+        // Construir la URL completa de la imagen
+        $relativeImagePath = 'storage/images/' . basename($imagePath);
+
+        // Guardar la URL en la base de datos
+        $clientes->imagen = $relativeImagePath;
         $clientes->save();
-
-        ##File::create({'url'-> $imagePath});
-
         return redirect() ->back();
-
     }
+    
 
     /**
      * Display the specified resource.
@@ -71,9 +75,25 @@ class ClienteController extends Controller
         $clientes-> nombre = $request->input('nombre');
         $clientes-> telefono= $request->input('telefono');
         $clientes-> correo = $request->input('correo');
-        $clientes->update();
-        return redirect() ->back();
-        
+
+         // Verificar si se proporcionó una nueva imagen
+        if ($request->hasFile('file')) {
+            // Validar y almacenar la nueva imagen
+            $request->validate(['file' => 'required|image']);                        
+                            
+            // Almacenar la imagen en la carpeta 'public/images'
+            $imagePath = $request->file('file')->store('public/images');
+            // Construir la URL completa de la imagen
+            $relativeImagePath = 'storage/images/' . basename($imagePath);
+
+            // Guardar la URL en la base de datos
+            $clientes->imagen = $relativeImagePath;
+
+        }
+
+        // Guardar los cambios en la base de datos
+        $clientes->update();      
+        return redirect() ->back();        
     }
 
     /**

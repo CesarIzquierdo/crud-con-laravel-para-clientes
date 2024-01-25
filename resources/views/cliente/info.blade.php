@@ -36,6 +36,22 @@
                     class="form-control" name="correo" id="" aria-describedby="helpId" placeholder=""
                     value = "{{$cliente->correo}}"/>
             </div>
+
+            <div class="card">
+              <div class="card-body">
+                <div class="mb-3">
+                  <label for="" class="form-label">IMAGEN</label>
+                  <input
+                      type="file"
+                      class="form-control" name="file" id="" aria-describedby="helpId" placeholder="" accept="image/*"/>
+                      <br>
+                      @error('file')
+                          <Strong><span class="text-danger">{{$message}}</span></Strong>
+                      @enderror
+                      
+                </div>     
+              </div>
+            </div>
                 
         </div>
         <div class="modal-footer">
